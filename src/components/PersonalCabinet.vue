@@ -3,7 +3,7 @@
   <div>
 
     <p class = "purse"><b>email:</b> example@mail.ru</p>
-    <p class = "purse"><b>Мои деньги:</b> 145$</p>
+    <p class = "purse"><b>Мои деньги:</b> {{balance}}$</p>
     <h2 class="header">
       Мои стоки:
     </h2>
@@ -45,7 +45,7 @@
       <br><br>
       <input type="number">
       <br><br>
-      <input type="submit" name="" value="положить на счёт" id="GetMoney">
+      <input type="submit" name="" value="положить на счёт">
     </div>
   </div>
 </body>
@@ -140,8 +140,29 @@
 
 </style>
 <script>
+import axios from "axios"
 export default{
-name: "PersonalCabinet"
+name: "PersonalCabinet",
+data(){
+return{
+balance:0,
+}
+},
+methods:{
+GetMoney(){
+axios.defaults.headers.common["Authorization"] =
+               "Bearer " + localStorage.getItem("jwt");
 
+axios.get('http://25.82.186.249:1337/api/account/balance', {}
+)
+  .then(response=>(this.balance = response.data.balance));
+
+
+},
+},
+created: function(){
+console.log(localStorage.getItem("token"));
+this.GetMoney();
+}
 }
 </script>

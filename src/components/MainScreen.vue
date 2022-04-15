@@ -10,7 +10,6 @@
     <thead>
       <tr>
         <th width="60%">Имя стока</th>
-        <th width="30%">Доходность</th>
         <th >цена</th>
       </tr>
     </thead>
@@ -22,10 +21,6 @@
             <b>{{stock}}</b>
             <p>{{ticker}}</p>
           </td>
-          <td class="profitability positive">
-            {{profit}}
-            <p>{{prProfit}}</p>
-          </td>
           <td>{{price}}</td>
         </tr>
 
@@ -36,16 +31,26 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: 'MainScreen',
   data() {
   return{
-    stock: 'Имя стока',
-    ticker:'Код стока',
-    profit:'+72$',
-    prProfit:'+300%',
-    price:'96$'
+    stock: 'Apple',
+    ticker:'TSLA',
+    price:0,
+    stocks:[]
     }
+  },
+  methods:{
+  getPrice(ticker1){
+  const path="http://25.82.186.249:1338/api/ticker/"+ticker1;
+  axios.get(path).then(response=>(this.price = response.data.data.last_price));
+
+  }
+  },
+  created: function(){
+  this.getPrice(this.ticker);
   }
   }
 </script>

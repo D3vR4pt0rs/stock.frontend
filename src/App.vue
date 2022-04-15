@@ -11,16 +11,18 @@
 import LoginScreen from './components/LoginScreen.vue'
 import MainScreen from './components/MainScreen.vue'
 import PersonalCabinet from './components/PersonalCabinet.vue'
+import CurrentStock from './components/CurrentStock.vue'
 export default {
   name: 'App',
   components: {
     LoginScreen,
     MainScreen,
-    PersonalCabinet
+    PersonalCabinet,
+    CurrentStock
   },
   data(){
   return{
-  page:"PersonalCabinet"
+  page:"CurrentStock"
   }
   },
   methods: {

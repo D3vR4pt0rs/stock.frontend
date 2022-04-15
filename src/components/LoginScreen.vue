@@ -17,23 +17,24 @@
           Залогиньтесь, пж
         </header>
         <br>
-        <input type="text" name="login" placeholder="почта">
+        <input type="text" v-model="Mail" name="login" placeholder="почта">
         <br><br>
-        <input type="password"  placeholder="пароль">
+        <input type="password" v-model="Pass"  placeholder="пароль">
         <br><br>
-        <input type="submit"  value="войти">
+        <input type="submit" @click="SignUp"  value="войти">
       </div>
       <div class="register" v-bind:class="{none:LoginTab}" id="registerField">
         <header>
           Зарегайтесь, пж
-        </header>
-        <input type="text" name="email" placeholder="почта">
+          </header>
+        <input type="text" v-model="Mail" name="email" placeholder="почта">
         <br><br>
-        <input type="password" name="password" placeholder="пароль" >
+        <input type="password" v-model="Pass" name="password" placeholder="пароль" >
         <br><br>
-        <input type="password" name="password" placeholder="повторите пароль">
+        <input type="password" name="password2" placeholder="повторите пароль">
         <br><br>
-        <input type="submit" name="submit" value="зарегистрироваться">
+        <input type="submit" @click="Register" name="submit" value="зарегистрироваться">
+
       </div>
     </div>
   </body>
@@ -41,9 +42,13 @@
 
 
 <script>
+import axios from "axios";
 export default {
   data(){
   return{
+  token:'',
+  Mail:'1212',
+  Pass:'1212',
   RegisterTab:false,
   LoginTab:true
   }
@@ -57,7 +62,33 @@ export default {
     registerFun() {
       this.LoginTab = false;
       this.RegisterTab = true;
+      },
+      Register(){
+      axios.post('http://25.82.186.249:1339/api/account/registration', {
+    email: this.Mail,
+    password: this.Pass
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+      },
+      SignUp(){
+      axios.post('http://25.82.186.249:1339/api/account/signup', {
+    email: this.Mail,
+    password: this.Pass
+  })
+  .then(function (response) {
+    localStorage.setItem("token",response.data.token);
+    console.log(localStorage.token);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
       }
+
      }
 }
 </script>
