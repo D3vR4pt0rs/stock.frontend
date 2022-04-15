@@ -3,13 +3,13 @@
 
 <br><br>
   <h2 class="header">
-    Нынешние стоки:
+    Список акций:
   </h2>
   <div class="stonks" id = "app">
     <table width = "100%">
     <thead>
       <tr>
-        <th width="60%">Имя стока</th>
+        <th width="60%">Название акций</th>
         <th >цена</th>
       </tr>
     </thead>

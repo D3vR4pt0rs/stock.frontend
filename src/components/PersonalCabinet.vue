@@ -2,18 +2,16 @@
 <body>
   <div>
 
-    <p class = "purse"><b>email:</b> example@mail.ru</p>
-    <p class = "purse"><b>Мои деньги:</b> {{balance}}$</p>
+    <p class = "purse"><b>Мой баланс:</b> {{balance}}$</p>
     <h2 class="header">
-      Мои стоки:
+      Мои акции:
     </h2>
     <div class="stonks">
       <table width = "100%">
         <thead>
           <tr>
-            <th width="30%">Имя стока</th>
+            <th width="30%">Название акции</th>
             <th width="10%">Объём</th>
-            <th width="20%">Доходность</th>
             <th >цена</th>
             <th>общая стоимость</th>
           </tr>
@@ -23,14 +21,10 @@
 
           <tr>
             <td>
-              <b>Имя стока</b>
-              <p>код стока</p>
+              <b>Название акции</b>
+              <p>Тикер</p>
             </td>
             <td>2</td>
-            <td class="profitability positive">
-              +0$
-              <p>+0%</p>
-            </td>
             <td>96$</td>
             <td>192$</td>
           </tr>
@@ -151,7 +145,7 @@ balance:0,
 methods:{
 GetMoney(){
 axios.defaults.headers.common["Authorization"] =
-               "Bearer " + localStorage.getItem("jwt");
+               "Bearer " + localStorage.getItem("token");
 
 axios.get('http://25.82.186.249:1337/api/account/balance', {}
 )

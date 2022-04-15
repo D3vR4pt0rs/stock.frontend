@@ -14,7 +14,7 @@
 
       <div class="login" v-bind:class="{none:RegisterTab}" id="loginField">
         <header>
-          Залогиньтесь, пж
+        Введите свою почту и пароль
         </header>
         <br>
         <input type="text" v-model="Mail" name="login" placeholder="почта">
@@ -25,7 +25,7 @@
       </div>
       <div class="register" v-bind:class="{none:LoginTab}" id="registerField">
         <header>
-          Зарегайтесь, пж
+          Введите свою почту и пароль
           </header>
         <input type="text" v-model="Mail" name="email" placeholder="почта">
         <br><br>
