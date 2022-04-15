@@ -1,26 +1,61 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div class="head" >
+      <header @click="GoToMain"  class="tabr">Главная страница</header>
+      <header @click="GoToCabinet"  class="tabr">Мой кабинет</header>
+      <header @click="GoToLogin"  class="tabr">Выйти</header>
+</div>
+      <component :is="page"></component>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import LoginScreen from './components/LoginScreen.vue'
+import MainScreen from './components/MainScreen.vue'
+import PersonalCabinet from './components/PersonalCabinet.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    LoginScreen,
+    MainScreen,
+    PersonalCabinet
+  },
+  data(){
+  return{
+  page:"PersonalCabinet"
+  }
+  },
+  methods: {
+  GoToMain(){
+  this.page = "MainScreen"
+  },
+  GoToCabinet(){
+  this.page = "PersonalCabinet"
+  },
+  GoToLogin(){
+  this.page = "LoginScreen"
+  }
   }
 }
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.tabr {
+    display: table-cell;
+    width: 25%;
+    background-color: rgba(11, 177, 224, 0.82);
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid #ffffff;
+    border-bottom: 0px;
+    position: relative;
+    font-size: 1.3em;
+    color: #ffffff;
+    font-family: Arial;
 }
+.none {
+display: none;
+}
+
+
 </style>
